@@ -15,7 +15,7 @@ provider "aws" {
 
 {% for module in modules %}
   {% if module.type == "vpc" %}
-module "network-{{module.network_name}}" {
+module "network" {
   source = "./{{ module.name }}"
   network_name = "{{module.network_name}}"
   tags = {
