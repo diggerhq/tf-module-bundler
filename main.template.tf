@@ -1,6 +1,6 @@
 provider "aws" {
   region = "{{ aws_region }}"
-  {% if not for_local_run % } 
+  {% if not for_local_run %} 
     {% if assume_role_arn %}
   assume_role {
     role_arn="{{assume_role_arn}}"
@@ -38,7 +38,7 @@ module "container-{{module.aws_app_identifier}}" {
   alarms_sns_topic_arn = ""
   tags = {
     digger_identifier = "{{module.aws_app_identifier}}"
-}
+  }
 }
 
 }}
