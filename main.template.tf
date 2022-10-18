@@ -16,7 +16,7 @@ provider "aws" {
 {% for module in modules %}
   {% if module.type == "vpc" %}
 module "network-{{module.network_name}}" {
-  source = "{{ module.path_to_module }}"
+  source = "./{{ module.name }}"
   network_name = "{{module.network_name}}"
   tags = {
     digger_identifier = "{{module.aws_app_identifier}}"
@@ -24,7 +24,7 @@ module "network-{{module.network_name}}" {
 } 
   {% elif module.type == "container" %}
 module "container-{{module.aws_app_identifier}}" {
-  source = "{{ module.path_to_module }}"
+  source = "./{{ module.name }}"
   vpc_id = module.network.vpc_id
   app = "{{module.aws_app_identifier}}"
   ecs_cluster_name = "{{module.aws_app_identifier}}"
