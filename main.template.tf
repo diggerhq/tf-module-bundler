@@ -19,7 +19,7 @@ module "network" {
   source = "./{{ module.name }}"
   network_name = "{{module.network_name}}"
   tags = {
-    digger_identifier = "{{module.aws_app_identifier}}"
+    digger_identifier = "{{module.network_name}}"
   }
 } 
   {% elif module.type == "container" %}
