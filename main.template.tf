@@ -24,7 +24,7 @@ module "network" {
   }
 } 
   {% elif module.type == "container" %}
-module "container-{{module.aws_app_identifier}}" {
+module "{{ module.module_name }}" {
   source = "./{{ module.module_name }}"
   vpc_id = module.network.vpc_id
   app = "{{module.aws_app_identifier}}"
@@ -39,11 +39,12 @@ module "container-{{module.aws_app_identifier}}" {
   }
 }
   {% elif module.type == "resource" %}
-module "resource-{{module.aws_app_identifier}}" {
+module "{{ module.module_name }}" {
   source = "./{{ module.module_name }}"
   vpc_id = module.network.vpc_id
   private_subnets = module.network.private_subnets
   public_subnets = module.network.public_subnets
+  security_groups = flatten({{{ security_groups | join(", ") }}})
   aws_app_identifier = "{{module.aws_app_identifier}}"
   region = "{{ aws_region }}"
   tags = {
