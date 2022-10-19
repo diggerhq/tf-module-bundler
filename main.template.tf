@@ -44,7 +44,7 @@ module "{{ module.module_name }}" {
   vpc_id = module.network.vpc_id
   private_subnets = module.network.private_subnets
   public_subnets = module.network.public_subnets
-  security_groups = flatten({{ security_groups | join(", ") }})
+  security_groups = flatten({{ security_groups | join(", ") or []}})
   aws_app_identifier = "{{module.aws_app_identifier}}"
   region = "{{ aws_region }}"
   tags = {
