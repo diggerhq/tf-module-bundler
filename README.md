@@ -1,3 +1,4 @@
+
 ![](digger-takes-care.png)
 
 # What is this?
@@ -7,7 +8,28 @@ help you set up your environment on AWS in no time!
 
 # How to run it?
 
-## On your machine
+## On your machine
+If aws cli has been configured already, no additional configuration required and following commands can be executed to view terraform plan:
+```
+terraform init
+terraform plan
+```
+To create infrastructure run:
+```
+terraform apply
+```
+To destroy all infrastructure terraform created, run:
+```
+terraform destroy
+```
+
+If aws haven't been configured locally, the simplest option is to set env variables:
+```
+$ export AWS_ACCESS_KEY_ID="anaccesskey"
+$ export AWS_SECRET_ACCESS_KEY="asecretkey"
+$ export AWS_REGION="us-west-2"
+```
+More details and options can be found in terraform documentation: https://registry.terraform.io/providers/hashicorp/aws/latest/docs
 
 ## In a CI system
 
