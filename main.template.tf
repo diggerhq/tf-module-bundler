@@ -18,6 +18,7 @@ provider "aws" {
 module "network" {
   source = "./{{ module.module_name }}"
   network_name = "{{module.network_name}}"
+  region = "{{ aws_region }}"
   tags = {
     digger_identifier = "{{module.network_name}}"
   }
@@ -30,8 +31,21 @@ module "container-{{module.aws_app_identifier}}" {
   ecs_cluster_name = "{{module.aws_app_identifier}}"
   private_subnets = module.network.private_subnets
   public_subnets = module.network.public_subnets
+  region = "{{ aws_region }}"
   monitoring_enabled = false
   alarms_sns_topic_arn = ""
+  tags = {
+    digger_identifier = "{{module.aws_app_identifier}}"
+  }
+}
+  {% elif module.type == "resource" %}
+module "resource-{{module.aws_app_identifier}}" {
+  source = "./{{ module.module_name }}"
+  vpc_id = module.network.vpc_id
+  private_subnets = module.network.private_subnets
+  public_subnets = module.network.public_subnets
+  aws_app_identifier = "{{module.aws_app_identifier}}"
+  region = "{{ aws_region }}"
   tags = {
     digger_identifier = "{{module.aws_app_identifier}}"
   }
