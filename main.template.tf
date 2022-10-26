@@ -7,8 +7,8 @@ provider "aws" {
     external_id="{{assume_role_external_id}}"
   }
     {% else %}
-  access_key = "{{aws_access_key}}"
-  secret_key = "{{aws_secret_key}}"
+  access_key = "{{aws_key}}"
+  secret_key = "{{aws_secret}}"
     {% endif %}  
   {% endif %}
 }
