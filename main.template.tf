@@ -31,6 +31,7 @@ module "{{ module.module_name }}" {
   ecs_cluster_name = "{{module.aws_app_identifier}}"
   private_subnets = module.network.private_subnets
   public_subnets = module.network.public_subnets
+  container_port = {{module.container_port}}
   region = "{{ aws_region }}"
   monitoring_enabled = false
   alarms_sns_topic_arn = ""
