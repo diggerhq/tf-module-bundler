@@ -23,6 +23,9 @@ module "network" {
     digger_identifier = "{{module.network_name}}"
   }
 } 
+output "network" {
+  value = module.network
+}
   {% elif module.type == "container" %}
 module "{{ module.module_name }}" {
   source = "./{{ module.module_name }}"
@@ -39,6 +42,11 @@ module "{{ module.module_name }}" {
     digger_identifier = "{{module.aws_app_identifier}}"
   }
 }
+
+output "{{ module.module_name }}" {
+  value = module.{{ module.module_name }}
+}
+
   {% elif module.type == "resource" %}
 module "{{ module.module_name }}" {
   source = "./{{ module.module_name }}"
@@ -51,6 +59,10 @@ module "{{ module.module_name }}" {
   tags = {
     digger_identifier = "{{module.aws_app_identifier}}"
   }
+}
+
+output "{{ module.module_name }}" {
+  value = module.{{ module.module_name }}
 }
   {% endif %}
 {% endfor %}
